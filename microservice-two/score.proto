@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Empty {}
+
+message Game {
+    int32 score = 1;
+}
+
+service Score {
+    rpc GetScore(Empty) returns (Game) {}
+}

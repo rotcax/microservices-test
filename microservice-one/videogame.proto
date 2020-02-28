@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message Empty {}
+
+message Game {
+    string name = 1;
+    int32 score = 2;
+}
+
+message GameResponse {
+    Game game = 1;
+}
+
+message GameMultipleResponse {
+    repeated Game game = 1;
+}
+
+service Videogame {
+    rpc SaveVideogame(Game) returns (GameResponse) {}
+    rpc GetVideogame(Empty) returns (GameMultipleResponse) {}
+}
