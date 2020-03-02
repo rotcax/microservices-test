@@ -4,7 +4,12 @@ import videogame_pb2
 import videogame_pb2_grpc
 
 class VideogameClient():
-    channel = grpc.insecure_channel('localhost:50051')
+    with open('keys/cert.pem', 'rb') as f:
+        public_key = f.read()
+
+    credentials = grpc.ssl_channel_credentials(root_certificates=public_key)
+    channel = grpc.secure_channel('localhost:50051', credentials)
+
     stub = videogame_pb2_grpc.VideogameStub(channel)
 
     def save_videogame(self):
