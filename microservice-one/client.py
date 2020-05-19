@@ -9,8 +9,8 @@ class VideogameClient():
 
     def save_videogame(self):
         request = videogame_pb2.Game(
-            name='Darkness Rise',
-            score=300
+            name='League of Legends',
+            score=1000
         )
         response = self.stub.SaveVideogame(request)
 
@@ -18,10 +18,14 @@ class VideogameClient():
 
     def get_videogame(self):
         request = videogame_pb2.Empty()
+        print('request')
         response = self.stub.GetVideogame(request)
+        print('response')
+        return response.game
 
-        return response
 
 client = VideogameClient()
-print(client.save_videogame())
+#print(client.save_videogame())
+
 print(client.get_videogame())
+
